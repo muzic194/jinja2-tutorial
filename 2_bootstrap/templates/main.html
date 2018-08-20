@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <!-- load jquery and bootstrap --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Stuff I put in to make bootstrap slightly prettier -->
+    <style>
+      .row-centered {
+          text-align:center;
+      }
+      .col-centered {
+          display:inline-block;
+          float:none;
+          vertical-align:top;
+          /* reset the text-align */
+          text-align:left;
+          /* inline-block space fix */
+          margin-right:-4px;
+      }
+    </style> 
+    <!-- Stuff I put in to make bootstrap slightly prettier --> 
+
+    <title>{{ header }}</title>
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <br><br>
+
+      <div class="well">
+        <h1 class="display">{{ title }}</h1>
+        <p>{{ introduction }}</p>
+      </div>
+
+      <div class="row row-centered">
+      {% for p in paragraphs -%}
+        <div class="col col-centered col-md-{{ p.width | default(12) }}">
+          <div class="panel panel-primary"> 
+            <div class="panel-heading"> 
+              <h4 class="panel-title">{{ p.title }}</h4>
+            </div>
+            <div class="panel-body"> 
+              <p>{{ p.text }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor -%}
+      </div>
+
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,16 @@
+
+{% macro make_panel(info) -%}
+<div class="col col-centered col-md-{{ info.width | default(12) }}">
+  <div class="panel panel-primary"> 
+    <div class="panel-heading"> 
+      <h4 class="panel-title">{{ info.title }}</h4>
+    </div>
+    <div class="panel-body"> 
+      <p>{{ info.text }}</p>
+      {% if info.image is defined %}
+      <img class="img-responsive img-rounded" src="{{ info.image }}">
+      {% endif %}
+    </div>
+  </div>
+</div>
+{%- endmacro %}

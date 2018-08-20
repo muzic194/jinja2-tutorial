@@ -1,0 +1,63 @@
+
+
+{% from "plots.html" import make_plot, default_scripts, plotly_scripts %}
+ 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{ default_scripts() }}   
+    {{ plotly_scripts() }}   
+
+    <!-- Stuff I put in to make bootstrap slightly prettier -->
+    <style>
+      .row-centered {
+          text-align:center;
+      }
+      .col-centered {
+          display:inline-block;
+          float:none;
+          vertical-align:top;
+          /* reset the text-align */
+          text-align:left;
+          /* inline-block space fix */
+          margin-right:-4px;
+      }
+    </style> 
+    <!-- Stuff I put in to make bootstrap slightly prettier --> 
+
+
+    {% for p in plots -%}
+      {{ make_plot(p) }}
+    {% endfor %}
+
+    <title>{{ header }}</title>
+
+  </head>
+  <body>
+
+    <div class="container">
+
+      <br><br>
+
+      <div class="well">
+        <h1 class="display">{{ title }}</h1>
+        <p>{{ introduction }}</p>
+      </div>
+          
+      <div class="row row-centered">
+      {% for p in plots -%}
+        <div class="col col-xs-12">
+          <h1>{{ p.title }}</h1>
+          <div id="{{ p.div }}">
+          </div>
+        </div>
+      {% endfor -%}
+      </div>
+
+    </div>
+  </body>
+</html>
+
